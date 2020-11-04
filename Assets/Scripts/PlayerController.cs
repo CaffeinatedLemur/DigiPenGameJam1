@@ -30,8 +30,7 @@ public class PlayerController : MonoBehaviour
 
         Vector2 movement = new Vector2();
 
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
+      
 
         //use the horizontal value to rotate can be add torque or just set the angular velocity
 
@@ -39,16 +38,16 @@ public class PlayerController : MonoBehaviour
 
         //set the forward and backward speeds
         myRb.AddForce(transform.up * movement.y * Speed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.D))
+        {
+            myRb.AddForce(transform.right * Speed * Time.deltaTime);
+        }
+        else if (Input.GetKey(KeyCode.A))
+        {
+            myRb.AddForce(transform.right * -Speed * Time.deltaTime);
+        }
 
 
-        if (Input.GetKey(KeyCode.LeftShift))
-        {
-            Speed = 1500;
-        }
-        else
-        {
-            Speed = 500;
-        }
 
 
     }
