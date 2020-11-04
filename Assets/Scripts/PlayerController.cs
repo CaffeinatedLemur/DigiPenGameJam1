@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
             myRb.AddForce(transform.right * -Speed * Time.deltaTime);
         }
 
-        else if (Input.GetKey(KeyCode.W) && myRb.velocity.y == 0)
+        if (Input.GetKey(KeyCode.W) && myRb.velocity.y == 0)
         {
             myRb.AddForce(height, ForceMode2D.Impulse);
         }
