@@ -13,8 +13,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float Speed = 10;
+    public float JumpSpeed = 10;
     public float AngularSpeed = 10;
     Rigidbody2D myRb;
+
+    public Vector2 height;
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +48,11 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
             myRb.AddForce(transform.right * -Speed * Time.deltaTime);
+        }
+
+        else if (Input.GetKey(KeyCode.W) && myRb.velocity.y == 0)
+        {
+            myRb.AddForce(height, ForceMode2D.Impulse);
         }
 
 
