@@ -13,15 +13,66 @@ public class EnemyAI : MonoBehaviour
 {
     public float speed;
 
+    public GameObject Enemy;
+    
+
     private bool moveRight = true;
 
-    public Transform GroundDetection;
+    public BoxCollider2D collisionDetection;
 
+    public Transform groundDetection;
+
+    void Start()
+    {
+        Enemy = GameObject.Find("Enemy");
+        collisionDetection = GetComponent<BoxCollider2D>();
+    }
+   
+
+    private void objectCollision()
+    {
+        if( collisionDetection == true)
+        {
+            
+           
+                if (moveRight == true)
+                {
+                    transform.eulerAngles = new Vector3(0, -180, 0);
+                    moveRight = false;
+                }
+                else
+                {
+                    transform.eulerAngles = new Vector3(0, 0, 0);
+                    moveRight = true;
+                }
+            
+        }
+        
+        
+    }
+    
     private void Update()
     {
+      //  this.objectCollision();
+
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        RaycastHit2D Dimension;
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down);
+
+        if(groundInfo.collider == false)
+        {
+            if(moveRight == true)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                moveRight = false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                moveRight = true;
+            }
+        }
+
     }
 
 
