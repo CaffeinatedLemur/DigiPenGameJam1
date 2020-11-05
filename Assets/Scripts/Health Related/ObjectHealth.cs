@@ -11,32 +11,34 @@ using UnityEngine.Events;
 
 public class ObjectHealth : MonoBehaviour
 {
-    public int MaxHealth = 6;
-    public int CurHealth = 6;
+    public int MaximumHealth = 10;
+    public int CurrentHealth = 10;
     public bool DestroyAtZero = true;
-    public UnityEvent OnDeath;
+    public UnityEvent UpUponDeath;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (OnDeath == null)
-            OnDeath = new UnityEvent();
+        if (UponDeath == null)
+            UponDeath = new UnityEvent();
     }
 
     public void ChangeHealth(int change)
     {
         // adjusts health based on change
-        CurHealth += change;
+        CurrentHealth += change;
 
         // If overhealed, sets to max health
-        if (CurHealth > MaxHealth)
-            CurHealth = MaxHealth;
-
-        // if less than 0, handle death
-        if (CurHealth <= 0)
+        if (CurrentHealth > MaximumHealth)
         {
-            CurHealth = 0;
-            OnDeath.Invoke();
+            CurrentHealth = MaximumHealth;
+        }
+            
+        // if less than 0, handle death
+        if (CurrentHealth <= 0)
+        {
+            CurrentHealth = 0;
+            UponDeath.Invoke();
 
             if (DestroyAtZero)
             {
