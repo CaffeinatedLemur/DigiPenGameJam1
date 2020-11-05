@@ -11,8 +11,8 @@ using UnityEngine.Events;
 
 public class ObjectHealth : MonoBehaviour
 {
-    public int MaxHealth = 10;
-    public int CurHealth = 10;
+    public int MaxHealth = 6;
+    public int CurHealth = 6;
     public bool DestroyAtZero = true;
     public UnityEvent OnDeath;
 
