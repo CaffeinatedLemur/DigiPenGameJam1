@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/*
+ * Arya Khubcher
+ * 11/5/20
+ * Desc: This script eill make the camera follow the player wherever the player goes.
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,11 +12,6 @@ public class CameraControl : MonoBehaviour
 {
     public Transform player;
     public Vector2 offset;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
