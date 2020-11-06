@@ -20,6 +20,8 @@ public class ObjectHealth : MonoBehaviour
     //things to do on death
     public UnityEvent UponDeath;
 
+    PlayerHealthBar myPHB;
+
     //respawn script
     public Respawn respawn;
 
@@ -29,12 +31,20 @@ public class ObjectHealth : MonoBehaviour
     {
         if (UponDeath == null)
             UponDeath = new UnityEvent();
+
+        myPHB = GetComponent<PlayerHealthBar>();
+        myPHB.HealthChange(CurrentHealth, MaximumHealth);
+
+        print("Max health: " + MaximumHealth);
+        print("Current Health: " + CurrentHealth);
     }
 
     public void ChangeHealth(int change)
     {
         // adjusts health based on change
         CurrentHealth += change;
+
+
 
         // If overhealed, sets to max health
         if (CurrentHealth > MaximumHealth)
@@ -60,6 +70,9 @@ public class ObjectHealth : MonoBehaviour
                 respawn.respawn();
                 CurrentHealth = MaximumHealth;
             }
-        }
+        } 
+        
+        print("CurHealth: " + CurrentHealth);
+        myPHB.HealthChange(CurrentHealth, MaximumHealth);
     }
 }
