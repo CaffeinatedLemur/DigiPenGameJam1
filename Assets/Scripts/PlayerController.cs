@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
    
     //wether or not you can jump
     public bool canJump = true;
+    public bool canDash = false;
 
     //get rigidbody of player
     Rigidbody2D myRb;
@@ -64,6 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             myRb.AddForce(height, ForceMode2D.Impulse);
             canJump = false;
+            canDash = true;
         }
 
         /*
@@ -89,17 +91,19 @@ public class PlayerController : MonoBehaviour
         }
         */
         //dash
-        if (Input.GetKey(KeyCode.Space) && timer >= Cooldown)
+        if (Input.GetKey(KeyCode.Space) && timer >= Cooldown && canDash)
         {
             timer = 0;
 
             if (myRb.velocity.x > 0)
             {
-                
+                dash.y = myRb.velocity.y * 2;
                 myRb.velocity = (dash);
             }
             else if (myRb.velocity.x < 0)
             {
+                dash.y = myRb.velocity.y * 2;
+
                 myRb.velocity = negdash;
             }
             else
@@ -120,7 +124,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.tag == "canJump")
         {
             //reset boolean
-            canJump = true;            
+            canJump = true;
+            canDash = false;
         }
        
     }
