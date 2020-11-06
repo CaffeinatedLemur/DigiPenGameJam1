@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5344939532187160319}
   - component: {fileID: 5344939532187160312}
   - component: {fileID: 5344939532187160313}
+  - component: {fileID: 7323777310532451688}
   m_Layer: 0
   m_Name: TimeDoor
   m_TagString: Untagged
@@ -122,5 +123,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ilevelToLoad: 1
-  slevelToLoad: 
-  useIntegerToLoadLevel: 1
+  slevelToLoad: Level 2
+  useIntegerToLoadLevel: 0
+--- !u!114 &7323777310532451688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5344939532187160314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68ddce1cf8e9c9e44b92d6b3c8fc5075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

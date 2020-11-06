@@ -1,7 +1,7 @@
 ﻿////////////////
-/// Author: Owen Whitehouse
-/// Date Created: 11/4/2020
-/// Desc: sets health of object to amount, and has change
+/// Author: Owen Whitehouse & Thomas Allen
+/// Date Created: 11/5/2020
+/// Desc: sets health of object to amount, and has change health functrion. Also respawns object at 0 hp.
 ////////////////
 
 using System.Collections;
@@ -11,10 +11,18 @@ using UnityEngine.Events;
 
 public class ObjectHealth : MonoBehaviour
 {
+    //max health of object
     public int MaximumHealth = 10;
+    //current health
     public int CurrentHealth = 10;
-    public bool DestroyAtZero = true;
-    public UnityEvent UpUponDeath;
+    //wether or not to destory the gameoject
+    public bool DestroyAtZero;
+    //things to do on death
+    public UnityEvent UponDeath;
+
+    //respawn script
+    public Respawn respawn;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,9 +48,17 @@ public class ObjectHealth : MonoBehaviour
             CurrentHealth = 0;
             UponDeath.Invoke();
 
+            //destroy object
             if (DestroyAtZero)
             {
                 Destroy(gameObject);
+            }
+            //or respawn object
+            else if (gameObject.CompareTag("Player"))
+            {
+                respawn = gameObject.GetComponent<Respawn>();
+                respawn.respawn();
+                CurrentHealth = MaximumHealth;
             }
         }
     }
