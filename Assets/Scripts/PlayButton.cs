@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿////////////////
+//Name: Thomas Allen
+//Script by: Ryan Scheppler
+//Date: 11/6/2020
+//Description: Loads next level in when button is pressed
+////////////////
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;

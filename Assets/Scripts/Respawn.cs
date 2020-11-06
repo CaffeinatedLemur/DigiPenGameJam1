@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿////////////////
+//Name: Thomas Allen
+//Script by: Ryan Scheppler
+//Date: 11/6/2020
+//Description: Repawns player at respawn point when health is at 0
+////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
