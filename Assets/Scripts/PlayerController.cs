@@ -1,8 +1,8 @@
 ﻿////////////////
 //Name: Thomas Allen
 //Script by: Ryan Scheppler
-//Date: 10/19/2020
-//Description: Basic 4 directional movement
+//Date: 11/6/2020
+//Description: Basic horzontal directional movement, jump, and dash
 ////////////////
 
 using System.Collections;
@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     //wether or not you can jump
     public bool canJump = true;
     public bool canDash = false;
+    public bool HasJumped = false;
 
     //get rigidbody of player
     Rigidbody2D myRb;
@@ -27,9 +28,7 @@ public class PlayerController : MonoBehaviour
     public Vector2 dash;
     public Vector2 negdash;
 
-    //cooldown for dash
-    public float timer = 0;
-    public float Cooldown = 10;
+
 
     // Start is called before the first frame update
     void Start()
@@ -61,11 +60,12 @@ public class PlayerController : MonoBehaviour
             myRb.AddForce(transform.right * -Speed * Time.deltaTime);
         }
         //jump
-        if (Input.GetKey(KeyCode.W) && canJump)
+        if (Input.GetKey(KeyCode.W) && canJump && !HasJumped)
         {
             myRb.AddForce(height, ForceMode2D.Impulse);
             canJump = false;
             canDash = true;
+            HasJumped = true;
         }
 
         /*
@@ -91,10 +91,8 @@ public class PlayerController : MonoBehaviour
         }
         */
         //dash
-        if (Input.GetKey(KeyCode.Space) && timer >= Cooldown && canDash)
+        if (Input.GetKey(KeyCode.Space) && HasJumped && canDash)
         {
-            timer = 0;
-
             if (myRb.velocity.x > 0)
             {
                 dash.y = myRb.velocity.y * 2;
@@ -106,15 +104,12 @@ public class PlayerController : MonoBehaviour
 
                 myRb.velocity = negdash;
             }
-            else
-            {
-                timer = 3;
-            }
+            canDash = false;
+
             //myRb.velocity = (dash);
         }
 
         //update dash cooldown
-        timer += Time.deltaTime;
 
     }
 
@@ -126,6 +121,7 @@ public class PlayerController : MonoBehaviour
             //reset boolean
             canJump = true;
             canDash = false;
+            HasJumped = false;
         }
        
     }

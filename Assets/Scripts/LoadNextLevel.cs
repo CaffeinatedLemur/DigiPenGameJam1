@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿////////////////
+//Name: Thomas Allen
+//Script by: Ryan Scheppler
+//Date: 11/6/2020
+//Description: Loads next level in build order
+////////////////
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -19,12 +26,14 @@ public class LoadNextLevel : MonoBehaviour
         
     }
 
-    public void OnCollisionEnter2D(Collision2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
+        print("Detects collisions");
         int nextSceneIndex = scene.buildIndex;
+        nextSceneIndex = nextSceneIndex + 1;
         if (collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(nextSceneIndex++);
+            SceneManager.LoadScene(nextSceneIndex);
         }
     }
 }
