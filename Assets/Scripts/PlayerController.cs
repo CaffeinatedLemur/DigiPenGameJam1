@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     //cooldown for dash
     public float timer = 0;
-    public float Cooldown = 10;
+    public float Cooldown = 3;
 
     // Start is called before the first frame update
     void Start()
