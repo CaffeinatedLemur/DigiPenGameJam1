@@ -1,7 +1,7 @@
 ﻿////////////////
-/// Author: Owen Whitehouse
-/// Date Created: 11/4/2020
-/// Desc: sets health of object to amount, and has change
+/// Author: Owen Whitehouse & Thomas Allen
+/// Date Created: 11/5/2020
+/// Desc: sets health of object to amount, and has change health functrion. Also respawns object at 0 hp.
 ////////////////
 
 using System.Collections;
@@ -11,36 +11,54 @@ using UnityEngine.Events;
 
 public class ObjectHealth : MonoBehaviour
 {
-    public int MaxHealth = 10;
-    public int CurHealth = 10;
-    public bool DestroyAtZero = true;
-    public UnityEvent OnDeath;
+    //max health of object
+    public int MaximumHealth = 10;
+    //current health
+    public int CurrentHealth = 10;
+    //wether or not to destory the gameoject
+    public bool DestroyAtZero;
+    //things to do on death
+    public UnityEvent UponDeath;
+
+    //respawn script
+    public Respawn respawn;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        if (OnDeath == null)
-            OnDeath = new UnityEvent();
+        if (UponDeath == null)
+            UponDeath = new UnityEvent();
     }
 
     public void ChangeHealth(int change)
     {
         // adjusts health based on change
-        CurHealth += change;
+        CurrentHealth += change;
 
         // If overhealed, sets to max health
-        if (CurHealth > MaxHealth)
-            CurHealth = MaxHealth;
-
-        // if less than 0, handle death
-        if (CurHealth <= 0)
+        if (CurrentHealth > MaximumHealth)
         {
-            CurHealth = 0;
-            OnDeath.Invoke();
+            CurrentHealth = MaximumHealth;
+        }
+            
+        // if less than 0, handle death
+        if (CurrentHealth <= 0)
+        {
+            CurrentHealth = 0;
+            UponDeath.Invoke();
 
+            //destroy object
             if (DestroyAtZero)
             {
                 Destroy(gameObject);
+            }
+            //or respawn object
+            else if (gameObject.CompareTag("Player"))
+            {
+                respawn = gameObject.GetComponent<Respawn>();
+                respawn.respawn();
+                CurrentHealth = MaximumHealth;
             }
         }
     }

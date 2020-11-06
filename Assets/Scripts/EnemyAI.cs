@@ -12,6 +12,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour
 {
     public float speed;
+    public float distance = 0.5f;
 
     public GameObject Enemy;
     
@@ -27,37 +28,35 @@ public class EnemyAI : MonoBehaviour
         Enemy = GameObject.Find("Enemy");
         collisionDetection = GetComponent<BoxCollider2D>();
     }
-   
 
-    private void objectCollision()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if( collisionDetection == true)
+        if(Mathf.Abs(collision.GetContact(0).normal.x) >= .5f)
         {
-            
-           
-                if (moveRight == true)
-                {
-                    transform.eulerAngles = new Vector3(0, -180, 0);
-                    moveRight = false;
-                }
-                else
-                {
-                    transform.eulerAngles = new Vector3(0, 0, 0);
-                    moveRight = true;
-                }
-            
+            if (moveRight == true)
+            {
+                transform.eulerAngles = new Vector3(0, -180, 0);
+                moveRight = false;
+            }
+            else
+            {
+                transform.eulerAngles = new Vector3(0, 0, 0);
+                moveRight = true;
+            }
+
         }
         
-        
     }
+
+
     
     private void Update()
     {
-      //  this.objectCollision();
+      //this.objectCollision();
 
         transform.Translate(Vector2.right * speed * Time.deltaTime);
 
-        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down);
+        RaycastHit2D groundInfo = Physics2D.Raycast(groundDetection.position, Vector2.down, distance);
 
         if(groundInfo.collider == false)
         {
