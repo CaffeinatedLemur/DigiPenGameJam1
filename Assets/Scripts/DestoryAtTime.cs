@@ -20,12 +20,7 @@ public class DestoryAtTime : MonoBehaviour
         StartCoroutine(CountDownTimer());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    //this is the timer of how long the object remains for
     IEnumerator CountDownTimer()
     {
         yield return new WaitForSeconds(TimeOfExistance);
