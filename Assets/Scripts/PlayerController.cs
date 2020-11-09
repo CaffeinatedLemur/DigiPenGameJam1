@@ -3,6 +3,7 @@
 //Script by: Ryan Scheppler
 //Date: 11/6/2020
 //Description: Basic horzontal directional movement, jump, and dash
+//Edit by: Owen Whitehouse (sound purposes)
 ////////////////
 
 using System.Collections;
@@ -23,6 +24,9 @@ public class PlayerController : MonoBehaviour
     //get rigidbody of player
     Rigidbody2D myRb;
 
+    // Sound manager script
+    SoundPlayonEvent sound;
+
     //vector2s for jump and dash
     public Vector2 height;
     public Vector2 dash;
@@ -33,10 +37,15 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Sets game object of sound source to find script on it
+        GameObject soundSource = GameObject.Find("Sound Source");
         myRb = GetComponent<Rigidbody2D>();
 
         dash.x = 12;
         negdash.x = -12;
+
+        // Uses script from sound source object and sets it for use
+        sound = soundSource.GetComponent<SoundPlayonEvent>();
     }
 
 
@@ -97,12 +106,18 @@ public class PlayerController : MonoBehaviour
             {
                 dash.y = myRb.velocity.y * 2;
                 myRb.velocity = (dash);
+
+                // plays dash sound
+                sound.PlaySound(2);
             }
             else if (myRb.velocity.x < 0)
             {
                 dash.y = myRb.velocity.y * 2;
 
                 myRb.velocity = negdash;
+
+                // plays dash sound
+                sound.PlaySound(2);
             }
             canDash = false;
 
