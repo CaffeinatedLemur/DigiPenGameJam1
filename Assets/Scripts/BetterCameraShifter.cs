@@ -25,6 +25,7 @@ public class BetterCameraShifter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         PlayerPos = player.transform.position.x;
         
         if (PlayerPos >= PosThresh)
