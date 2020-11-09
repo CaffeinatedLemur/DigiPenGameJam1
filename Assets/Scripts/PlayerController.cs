@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    //make sure the player is on the grgound
+    //make sure the player is on the ground
     public void OnCollisionStay2D (Collision2D collision)
     {
         if (collision.gameObject.tag == "canJump")

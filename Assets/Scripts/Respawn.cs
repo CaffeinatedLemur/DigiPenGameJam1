@@ -8,12 +8,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Respawn : MonoBehaviour
 {
     public GameObject RespawnPoint;
     public GameObject player;
+    Scene scene;
+
 
     public ObjectHealth health;
     public float currenthealth;
@@ -44,7 +47,9 @@ public class Respawn : MonoBehaviour
 
     private void InvokeRespawn()
     {
-        gameObject.transform.position = RespawnPoint.transform.position;
+        //gameObject.transform.position = RespawnPoint.transform.position;
+        scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.buildIndex);
         //OnDeathtext.enabled = false;
     }
 }
