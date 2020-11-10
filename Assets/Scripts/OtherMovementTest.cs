@@ -2,13 +2,13 @@
 
 public class OtherMovementTest : MonoBehaviour
 {
-	public float m_JumpForce = 400f;                        
+	public float JumpForce = 400f;                        
 	public float smoothThing = .05f;  
 
 
 	public bool canJump;            // Whether or not the player is on the ground.
 	public Rigidbody2D myRb;
-	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+	private bool DirectionFacing = true;  // For determining which way the player is currently facing.
 	private Vector3 velocity = Vector3.zero;
 
 
@@ -17,6 +17,7 @@ public class OtherMovementTest : MonoBehaviour
 	//how fast you go up and down
 	public float jumpVelocity;
 	public float fallMultiplier = 2.5f;
+	public float jumpGravity = 0.5f;
 
 	//get rigidbody of player
     public void Start()
@@ -33,11 +34,11 @@ public class OtherMovementTest : MonoBehaviour
 		// And then smoothing it out and applying it to the character
 		myRb.velocity = Vector3.SmoothDamp(myRb.velocity, targetVelocity, ref velocity, smoothThing);
 
-		if (move > 0 && !m_FacingRight)
+		if (move > 0 && !DirectionFacing)
 		{
 			Flip();
 		}
-		else if (move < 0 && m_FacingRight)
+		else if (move < 0 && DirectionFacing)
 		{
 			Flip();
 		}
@@ -46,7 +47,8 @@ public class OtherMovementTest : MonoBehaviour
 		if (canJump && jump)
 		{
 
-			myRb.velocity = Vector2.up * jumpVelocity;
+			//myRb.velocity = Vector2.up * Physics2D.gravity.y * (jumpGravity - 1) * Time.deltaTime * jumpVelocity;
+			myRb.AddForce(new Vector2(0f, JumpForce));
 
 		}
 
@@ -63,7 +65,7 @@ public class OtherMovementTest : MonoBehaviour
 	private void Flip()
 	{
 		// Switch the way the player is labelled as facing.
-		m_FacingRight = !m_FacingRight;
+		DirectionFacing = !DirectionFacing;
 
 		// Multiply the player's x local scale by -1.
 		Vector3 theScale = transform.localScale;

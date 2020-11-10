@@ -247,12 +247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e11fa79549bf544bc25a295ec7e9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 700
+  JumpForce: 700
   smoothThing: 0.05
   canJump: 0
   myRb: {fileID: 0}
-  jumpVelocity: 0
+  jumpVelocity: 50
   fallMultiplier: 3
+  jumpGravity: 0.5
 --- !u!114 &186869757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +351,11 @@ PrefabInstance:
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 6200000, guid: 8bca87f24e933ed4cb6eed6a134433a8, type: 2}
+    - target: {fileID: 4558025102255248170, guid: 8d5eaa5e229de8347a68653578e349e8,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4558025102255248171, guid: 8d5eaa5e229de8347a68653578e349e8,
         type: 3}
       propertyPath: dash.x
@@ -696,12 +702,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4e11fa79549bf544bc25a295ec7e9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JumpForce: 700
+  JumpForce: 400
   smoothThing: 0.05
   canJump: 0
   myRb: {fileID: 0}
   jumpVelocity: 10
   fallMultiplier: 2.5
+  jumpGravity: 0.5
 --- !u!114 &1852985129
 MonoBehaviour:
   m_ObjectHideFlags: 0
