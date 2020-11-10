@@ -16,7 +16,7 @@ public class MovementTest : MonoBehaviour
 	{
 		XMovement = Input.GetAxisRaw("Horizontal") * speed;
 
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyDown(KeyCode.W))
 		{
 			jump = true;
 		}
