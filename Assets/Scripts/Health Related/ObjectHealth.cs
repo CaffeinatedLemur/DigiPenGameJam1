@@ -1,7 +1,7 @@
 ﻿////////////////
 /// Author: Owen Whitehouse & Thomas Allen
 /// Date Created: 11/5/2020
-/// Desc: sets health of object to amount, and has change health functrion. Also respawns object at 0 hp.
+/// Desc: sets health of object to amount, and has change health function. Also respawns object at 0 hp.
 ////////////////
 
 using System.Collections;
@@ -20,7 +20,12 @@ public class ObjectHealth : MonoBehaviour
     //things to do on death
     public UnityEvent UponDeath;
 
-    PlayerHealthBar myPHB;
+    // Scripts for health bars
+    PlayerHealthBar player;
+    BossHealthBar boss;
+
+    // Distinguishes health bars
+    GameObject thing;
 
     //respawn script
     public Respawn respawn;
@@ -32,11 +37,17 @@ public class ObjectHealth : MonoBehaviour
         if (UponDeath == null)
             UponDeath = new UnityEvent();
 
-        myPHB = GetComponent<PlayerHealthBar>();
-        myPHB.HealthChange(CurrentHealth, MaximumHealth);
+        thing = this.gameObject;
 
-        print("Max health: " + MaximumHealth);
-        print("Current Health: " + CurrentHealth);
+        // Sets component of Player HB, and runs it for the first time
+        GameObject play = GameObject.FindGameObjectWithTag("Player");
+        player = play.GetComponent<PlayerHealthBar>();
+        player.HealthChange(CurrentHealth, MaximumHealth);
+
+        // Gets script off of health bar object, and runs it once
+        GameObject enemy = GameObject.Find("Boss Health");
+        boss = enemy.GetComponent<BossHealthBar>();
+        boss.BarChange();
     }
 
     public void ChangeHealth(int change)
@@ -70,9 +81,12 @@ public class ObjectHealth : MonoBehaviour
                 respawn.respawn();
                 CurrentHealth = MaximumHealth;
             }
-        } 
-        
-        print("CurHealth: " + CurrentHealth);
-        myPHB.HealthChange(CurrentHealth, MaximumHealth);
+        }
+
+        // Detects if current objects tag is player or boss, and changes bar accordingly
+        if (thing.tag == "Player")
+            player.HealthChange(CurrentHealth, MaximumHealth);
+        else if (thing.tag == "Boss")
+            boss.BarChange();
     }
 }
