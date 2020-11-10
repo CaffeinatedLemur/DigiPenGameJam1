@@ -3,10 +3,10 @@
 public class OtherMovementTest : MonoBehaviour
 {
 	public float m_JumpForce = 400f;                        
-	public float m_MovementSmoothing = .05f;  
+	public float smoothThing = .05f;  
 
 
-	private bool canJump;            // Whether or not the player is on the ground.
+	public bool canJump;            // Whether or not the player is on the ground.
 	public Rigidbody2D myRb;
 	private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 	private Vector3 velocity = Vector3.zero;
@@ -26,12 +26,12 @@ public class OtherMovementTest : MonoBehaviour
 
 
 
-    public void Move(float move, bool jump)
+    public void Movement(float move, bool jump)
 	{
 		// Move the character by finding the target velocity
 		Vector3 targetVelocity = new Vector2(move * 10f, myRb.velocity.y);
 		// And then smoothing it out and applying it to the character
-		myRb.velocity = Vector3.SmoothDamp(myRb.velocity, targetVelocity, ref velocity, m_MovementSmoothing);
+		myRb.velocity = Vector3.SmoothDamp(myRb.velocity, targetVelocity, ref velocity, smoothThing);
 
 		if (move > 0 && !m_FacingRight)
 		{
@@ -45,16 +45,18 @@ public class OtherMovementTest : MonoBehaviour
 		// If the player should jump...
 		if (canJump && jump)
 		{
-			canJump = false;
+
 			myRb.velocity = Vector2.up * jumpVelocity;
 
-			
 		}
 
 		if (myRb.velocity.y < 0)
 		{
 			myRb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
 		}
+
+		canJump = false;
+
 	}
 
 

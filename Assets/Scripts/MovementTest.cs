@@ -7,29 +7,25 @@ public class MovementTest : MonoBehaviour
 
 	public OtherMovementTest controller;
 
-	public float runSpeed = 40f;
+	public float speed = 40f;
 
-	float horizontalMove = 0f;
-	bool jump = false;
+	public float XMovement = 0f;
+	public bool jump = false;
 	// Update is called once per frame
 	void Update()
 	{
+		XMovement = Input.GetAxisRaw("Horizontal") * speed;
 
-		horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-
-		if (Input.GetButtonDown("Jump"))
+		if (Input.GetKeyDown(KeyCode.Space))
 		{
 			jump = true;
 		}
-
-	
-
 	}
 
 	void FixedUpdate()
 	{
 		// Move our character
-		controller.Move(horizontalMove * Time.deltaTime, jump);
+		controller.Movement(XMovement * Time.deltaTime, jump);
 		jump = false;
 	}
 }
