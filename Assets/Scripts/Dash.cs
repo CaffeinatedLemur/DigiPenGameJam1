@@ -4,6 +4,45 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
+    public Rigidbody2D myRb;
+
+    public float dashSpeed;
+    public bool hasDashed;
+
+    public float xRaw;
+    public float yRaw;
+    // Start is called before the first frame update
+    void Start()
+    {
+        myRb = GetComponent<Rigidbody2D>();
+    }
+
+    public void Update()
+    {
+        xRaw = Input.GetAxisRaw("Horizontal");
+        yRaw = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetButtonDown("Jump") && !hasDashed)
+        {
+            if (xRaw != 0 || yRaw != 0)
+                dash(xRaw, yRaw);
+        }
+    }
+
+    public void dash(float x, float y)
+    {
+        if (!hasDashed)
+        {
+            hasDashed = true;
+
+            myRb.velocity = Vector2.zero;
+            Vector2 DashVector = new Vector2(x, y);
+
+            myRb.velocity += DashVector.normalized * dashSpeed;
+        }
+    }
+}
+/*
     public Rigidbody2D rb;
 
     public float speed;
@@ -22,6 +61,7 @@ public class Dash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (direction == 0)
         {
             //if (Input.GetKeyDown(KeyCode.Space))
@@ -85,4 +125,4 @@ public class Dash : MonoBehaviour
             }
         }
     }
-}
+    */

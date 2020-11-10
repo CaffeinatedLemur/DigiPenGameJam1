@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class OtherMovementTest : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class OtherMovementTest : MonoBehaviour
 	public float fallMultiplier = 2.5f;
 	public float jumpGravity = 0.5f;
 
+
+	public UnityEvent OnDash;
 	//get rigidbody of player
     public void Start()
     {
@@ -79,9 +82,77 @@ public class OtherMovementTest : MonoBehaviour
 		{
 			//reset boolean
 			canJump = true;
+			hasDashed = false;
 			
 			//HasJumped = false;
 		}
 
+	}
+
+	public float dashSpeed;
+	public bool hasDashed;
+	public bool isDashing;
+	public float currentX;
+	public float CurrentY;
+
+	public float timer;
+	public float duration;
+
+
+	public Vector2 noYSpeed;
+
+
+	public GameObject DashParticles;
+
+	public void Update()
+	{
+		currentX = Input.GetAxisRaw("Horizontal");
+		CurrentY = Input.GetAxisRaw("Vertical");
+
+		timer += Time.deltaTime;
+
+		if (Input.GetButtonDown("Jump") && !hasDashed)
+		{
+			if (currentX != 0 || CurrentY != 0)
+				dash(currentX, CurrentY);
+			timer = 0;
+		}
+		/*
+		if (isDashing)
+        {
+			myRb.drag = timer * 100;
+        }
+		if (timer >= duration)
+        {
+			myRb.drag = 1;
+        }
+		*/
+	}
+
+	public void dash(float x, float y)
+	{
+		if (!hasDashed && ! canJump)
+		{
+			noYSpeed.y = 0;
+			noYSpeed.x = 0;
+			hasDashed = true;
+
+			myRb.velocity = Vector2.zero;
+			myRb.velocity = noYSpeed;
+			Vector2 DashVector = new Vector2(x, y);
+
+			DashVector.x *= dashSpeed * 2;
+			DashVector.y *= dashSpeed / 1.25f;
+
+			myRb.velocity += DashVector;
+
+			isDashing = true;
+
+			//spawn the thing
+			Instantiate(DashParticles, transform.position, Quaternion.identity);
+		
+		
+			OnDash.Invoke();
+		}
 	}
 }
