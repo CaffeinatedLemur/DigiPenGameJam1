@@ -101,6 +101,9 @@ public class OtherMovementTest : MonoBehaviour
 
 	public Vector2 noYSpeed;
 
+
+	public GameObject DashParticles;
+
 	public void Update()
 	{
 		currentX = Input.GetAxisRaw("Horizontal");
@@ -144,6 +147,11 @@ public class OtherMovementTest : MonoBehaviour
 			myRb.velocity += DashVector;
 
 			isDashing = true;
+
+			//spawn the thing
+			Instantiate(DashParticles, transform.position, Quaternion.identity);
+		
+		
 			OnDash.Invoke();
 		}
 	}
