@@ -136,7 +136,7 @@ public class OtherMovementTest : MonoBehaviour
 			Vector2 DashVector = new Vector2(x, y);
 
 			DashVector.x *= dashSpeed * 2;
-			DashVector.y *= dashSpeed / 2;
+			DashVector.y *= dashSpeed / 1.25f;
 
 			myRb.velocity += DashVector;
 
