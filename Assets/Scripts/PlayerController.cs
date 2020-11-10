@@ -15,7 +15,9 @@ public class PlayerController : MonoBehaviour
 {
     //how fast you go up
     public float Speed = 10;
-   
+    public float jumpVelocity;
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
     //wether or not you can jump
     public bool canJump = true;
     public bool canDash = false;
@@ -31,7 +33,6 @@ public class PlayerController : MonoBehaviour
     public Vector2 height;
     public Vector2 dash;
     public Vector2 negdash;
-
 
 
     // Start is called before the first frame update
@@ -71,35 +72,20 @@ public class PlayerController : MonoBehaviour
         //jump
         if (Input.GetKey(KeyCode.W) && canJump && !HasJumped)
         {
-            myRb.AddForce(height, ForceMode2D.Impulse);
+            //myRb.AddForce(height, ForceMode2D.Impulse);
+            myRb.velocity = Vector2.up * jumpVelocity;
             canJump = false;
             canDash = true;
             HasJumped = true;
         }
 
-        /*
-        //set dash direction
-        if (!((dash.x = myRb.velocity.x) < 0))
+        if (myRb.velocity.y < 0)
         {
-            print("works");
-            dash.x = -12;
+            myRb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if ((dash.x = myRb.velocity.x) == 0)
-        {
-            dash.x = 0;
-        }
-        else
-        {
-            dash.x = 12;
-        }
+        
 
-        if ((dash.x = myRb.velocity.x) < 0)
-        {
-            
-            dash.x = 12;
-        }
-        */
-        //dash
+        /*
         if (Input.GetKey(KeyCode.Space) && HasJumped && canDash)
         {
             if (myRb.velocity.x > 0)
@@ -123,6 +109,7 @@ public class PlayerController : MonoBehaviour
 
             //myRb.velocity = (dash);
         }
+        */
 
         //update dash cooldown
 
