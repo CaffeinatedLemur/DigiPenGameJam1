@@ -3,6 +3,7 @@
 //Script by: Ryan Scheppler
 //Date: 11/6/2020
 //Description: Basic horzontal directional movement, jump, and dash
+//Edit by: Owen Whitehouse (sound purposes)
 ////////////////
 
 using System.Collections;
@@ -14,7 +15,9 @@ public class PlayerController : MonoBehaviour
 {
     //how fast you go up
     public float Speed = 10;
-   
+    public float jumpVelocity;
+    public float fallMultiplier = 2.5f;
+    public float lowJumpMultiplier = 2f;
     //wether or not you can jump
     public bool canJump = true;
     public bool canDash = false;
@@ -23,20 +26,27 @@ public class PlayerController : MonoBehaviour
     //get rigidbody of player
     Rigidbody2D myRb;
 
+    // Sound manager script
+    SoundPlayonEvent sound;
+
     //vector2s for jump and dash
     public Vector2 height;
     public Vector2 dash;
     public Vector2 negdash;
 
 
-
     // Start is called before the first frame update
     void Start()
     {
+        // Sets game object of sound source to find script on it
+        GameObject soundSource = GameObject.Find("Sound Source");
         myRb = GetComponent<Rigidbody2D>();
 
         dash.x = 12;
         negdash.x = -12;
+
+        // Uses script from sound source object and sets it for use
+        sound = soundSource.GetComponent<SoundPlayonEvent>();
     }
 
 
@@ -62,52 +72,44 @@ public class PlayerController : MonoBehaviour
         //jump
         if (Input.GetKey(KeyCode.W) && canJump && !HasJumped)
         {
-            myRb.AddForce(height, ForceMode2D.Impulse);
+            //myRb.AddForce(height, ForceMode2D.Impulse);
+            myRb.velocity = Vector2.up * jumpVelocity;
             canJump = false;
             canDash = true;
             HasJumped = true;
         }
 
-        /*
-        //set dash direction
-        if (!((dash.x = myRb.velocity.x) < 0))
+        if (myRb.velocity.y < 0)
         {
-            print("works");
-            dash.x = -12;
+            myRb.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-        else if ((dash.x = myRb.velocity.x) == 0)
-        {
-            dash.x = 0;
-        }
-        else
-        {
-            dash.x = 12;
-        }
+        
 
-        if ((dash.x = myRb.velocity.x) < 0)
-        {
-            
-            dash.x = 12;
-        }
-        */
-        //dash
+        /*
         if (Input.GetKey(KeyCode.Space) && HasJumped && canDash)
         {
             if (myRb.velocity.x > 0)
             {
                 dash.y = myRb.velocity.y * 2;
                 myRb.velocity = (dash);
+
+                // plays dash sound
+                sound.PlaySound(2);
             }
             else if (myRb.velocity.x < 0)
             {
                 dash.y = myRb.velocity.y * 2;
 
                 myRb.velocity = negdash;
+
+                // plays dash sound
+                sound.PlaySound(2);
             }
             canDash = false;
 
             //myRb.velocity = (dash);
         }
+        */
 
         //update dash cooldown
 

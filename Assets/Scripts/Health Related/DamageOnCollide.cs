@@ -18,6 +18,18 @@ public class DamageOnCollide : MonoBehaviour
     [Tooltip("list of things to do when we collide")]
     public UnityEvent OnCollide = new UnityEvent();
     public GameObject[] ObjectsToSpawn;
+    
+    // Sound script
+    SoundPlayonEvent sound;
+
+    void Start()
+    {
+        GameObject soundSource = GameObject.Find("Sound Source");
+
+        // Sets up sound
+        sound = soundSource.GetComponent<SoundPlayonEvent>();
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         //get the health compenent
@@ -41,5 +53,9 @@ public class DamageOnCollide : MonoBehaviour
         //destory the damaged thing?
         if (DestroyOnCollide)
             Destroy(gameObject);
+
+        // To help with sound script (Owen Whitehouse)
+        if (collision.gameObject.tag == "Player")
+            sound.PlaySound(1);
     }
 }

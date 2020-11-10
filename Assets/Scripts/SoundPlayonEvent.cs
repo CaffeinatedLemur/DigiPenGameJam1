@@ -12,7 +12,7 @@ public class SoundPlayonEvent : MonoBehaviour
     public AudioSource source;
     public static AudioClip dash, hurt;
     public float volume = 0.5f;
-    private GameObject player;
+    public GameObject player;
 
     void Start()
     {
@@ -21,7 +21,11 @@ public class SoundPlayonEvent : MonoBehaviour
 
         dash = Resources.Load<AudioClip>("Dash");
         hurt = Resources.Load<AudioClip>("Hurt");
-        player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player == null)
+            player = GameObject.FindWithTag("Player");
+
+        
     }
 
     // Public function to call from other scripts
@@ -31,12 +35,8 @@ public class SoundPlayonEvent : MonoBehaviour
         switch (soundNum)
         {
             case 1:
-                // If it's tagged player, play hurt sound
-                if (player)
-                {
-                    // Plays hurt sound
-                    source.PlayOneShot(hurt, volume);
-                }
+               // Plays hurt sound
+               source.PlayOneShot(hurt, volume);
                 break;
             case 2:
                 // Plays dash sound
