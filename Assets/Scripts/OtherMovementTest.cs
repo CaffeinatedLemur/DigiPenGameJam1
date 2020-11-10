@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class OtherMovementTest : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class OtherMovementTest : MonoBehaviour
 	public float fallMultiplier = 2.5f;
 	public float jumpGravity = 0.5f;
 
+
+	public UnityEvent OnDash;
 	//get rigidbody of player
     public void Start()
     {
@@ -141,6 +144,7 @@ public class OtherMovementTest : MonoBehaviour
 			myRb.velocity += DashVector;
 
 			isDashing = true;
+			OnDash.Invoke();
 		}
 	}
 }
