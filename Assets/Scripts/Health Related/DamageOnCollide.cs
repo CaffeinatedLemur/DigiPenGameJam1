@@ -56,6 +56,6 @@ public class DamageOnCollide : MonoBehaviour
 
         // To help with sound script (Owen Whitehouse)
         if (collision.gameObject.tag == "Player")
-            sound.PlaySound(1);
+            sound.PlaySound("Hurt");
     }
 }

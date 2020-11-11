@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dash : MonoBehaviour
 {
     public Rigidbody2D myRb;
+    SoundPlayonEvent sound;
 
     public float dashSpeed;
     public bool hasDashed;
@@ -14,6 +15,10 @@ public class Dash : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Gets sound script from sound source object
+        GameObject source = GameObject.Find("Sound Source");
+        sound = source.GetComponent<SoundPlayonEvent>();
+
         myRb = GetComponent<Rigidbody2D>();
     }
 
@@ -39,6 +44,7 @@ public class Dash : MonoBehaviour
             Vector2 DashVector = new Vector2(x, y);
 
             myRb.velocity += DashVector.normalized * dashSpeed;
+            sound.PlaySound("Dash");
         }
     }
 }

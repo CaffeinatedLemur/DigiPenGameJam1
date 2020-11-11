@@ -29,16 +29,16 @@ public class SoundPlayonEvent : MonoBehaviour
     }
 
     // Public function to call from other scripts
-    public void PlaySound(int soundNum)
+    public void PlaySound(string sound)
     {
         // Allows you to choose which sound to play from list (expandable list)
-        switch (soundNum)
+        switch (sound)
         {
-            case 1:
+            case "Hurt":
                // Plays hurt sound
                source.PlayOneShot(hurt, volume);
                 break;
-            case 2:
+            case "Dash":
                 // Plays dash sound
                 source.PlayOneShot(dash, volume);
                 break;
