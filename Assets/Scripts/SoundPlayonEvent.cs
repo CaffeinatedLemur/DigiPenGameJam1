@@ -10,7 +10,7 @@ public class SoundPlayonEvent : MonoBehaviour
 {
     // Audio source, clips, and volume control
     public AudioSource source;
-    public static AudioClip dash, hurt;
+    public static AudioClip dash, hurt, death, jump;
     public float volume = 0.5f;
     public GameObject player;
 
@@ -19,13 +19,14 @@ public class SoundPlayonEvent : MonoBehaviour
         // Sets sound to an AudioSource
         source = GetComponent<AudioSource>();
 
+        // Gets sounds from folder
         dash = Resources.Load<AudioClip>("Dash");
         hurt = Resources.Load<AudioClip>("Hurt");
+        death = Resources.Load<AudioClip>("Death");
+        jump = Resources.Load<AudioClip>("Jump");
 
         if (player == null)
             player = GameObject.FindWithTag("Player");
-
-        
     }
 
     // Public function to call from other scripts
@@ -41,6 +42,14 @@ public class SoundPlayonEvent : MonoBehaviour
             case "Dash":
                 // Plays dash sound
                 source.PlayOneShot(dash, volume);
+                break;
+            case "Death":
+                // Plays death sound
+                source.PlayOneShot(death, volume);
+                break;
+            case "Jump":
+                // Plays jump sound
+                source.PlayOneShot(jump, volume);
                 break;
         }
     }

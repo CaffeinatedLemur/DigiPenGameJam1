@@ -23,16 +23,6 @@ public class Respawn : MonoBehaviour
 
     //public Text OnDeathtext;
      
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void respawn()
     {
         /*
@@ -40,7 +30,7 @@ public class Respawn : MonoBehaviour
         currenthealth = health.CurrentHealth;
 
         if (currenthealth <= 0)*/
-        Invoke("InvokeRespawn", 0.1f);
+        Invoke("InvokeRespawn", 2f);
         //OnDeathtext.enabled = true;
 
     }

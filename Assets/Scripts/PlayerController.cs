@@ -77,6 +77,7 @@ public class PlayerController : MonoBehaviour
             canJump = false;
             canDash = true;
             HasJumped = true;
+            sound.PlaySound("Jump");
         }
 
         if (myRb.velocity.y < 0)
@@ -116,7 +117,7 @@ public class PlayerController : MonoBehaviour
     }
 
     //make sure the player is on the ground
-    public void OnCollisionStay2D (Collision2D collision)
+    public void OnCollisionEnter2D (Collision2D collision)
     {
         if (collision.gameObject.tag == "canJump")
         {
