@@ -513,6 +513,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5557462587415845534, guid: 20db44a86c0806c47b3213436e7fe1e3,
+        type: 3}
+      propertyPath: respawn
+      value: 
+      objectReference: {fileID: 989874577}
     - target: {fileID: 5557462587415845535, guid: 20db44a86c0806c47b3213436e7fe1e3,
         type: 3}
       propertyPath: hearts.Array.data[0]
@@ -572,6 +577,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ObjectsToSpawn: []
+  timer: 0
+  cooldown: 0
 --- !u!60 &341929986
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1188,6 +1195,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ObjectsToSpawn: []
+  timer: 0
+  cooldown: 0
 --- !u!60 &855643727
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1292,35 +1301,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5151164172057995480, guid: cc21e810268ae1e4b8b55555724aaaf4,
-        type: 3}
-      propertyPath: damage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5879447418909954849, guid: cc21e810268ae1e4b8b55555724aaaf4,
         type: 3}
       propertyPath: m_Name
       value: Enemy (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879447418909954850, guid: cc21e810268ae1e4b8b55555724aaaf4,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.x
-      value: 1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879447418909954850, guid: cc21e810268ae1e4b8b55555724aaaf4,
-        type: 3}
-      propertyPath: m_SpriteTilingProperty.oldSize.y
-      value: 1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879447418909954850, guid: cc21e810268ae1e4b8b55555724aaaf4,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879447418909954850, guid: cc21e810268ae1e4b8b55555724aaaf4,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.28
       objectReference: {fileID: 0}
     - target: {fileID: 5879447418909954860, guid: cc21e810268ae1e4b8b55555724aaaf4,
         type: 3}
@@ -1376,32 +1360,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879447418909954861, guid: cc21e810268ae1e4b8b55555724aaaf4,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879447418909954861, guid: cc21e810268ae1e4b8b55555724aaaf4,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879447418909954861, guid: cc21e810268ae1e4b8b55555724aaaf4,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5879447418909954861, guid: cc21e810268ae1e4b8b55555724aaaf4,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 09108e4aae2a3394f86722f1b4f15b67,
-        type: 3}
-    - target: {fileID: 5879447418909954861, guid: cc21e810268ae1e4b8b55555724aaaf4,
-        type: 3}
-      propertyPath: m_FlipX
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc21e810268ae1e4b8b55555724aaaf4, type: 3}
@@ -1531,6 +1489,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 341436859}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &989874577 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5557462587415845533, guid: 20db44a86c0806c47b3213436e7fe1e3,
+    type: 3}
+  m_PrefabInstance: {fileID: 341436859}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989874572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72b72eebcd2890f40b034d04d3dae030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1641932963 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4375703704872980357, guid: fc9886027b2fb534590ad06b82b196e2,
@@ -1580,6 +1550,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ObjectsToSpawn: []
+  timer: 0
+  cooldown: 0
 --- !u!60 &1662645783
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2135,6 +2107,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ObjectsToSpawn: []
+  timer: 0
+  cooldown: 0
 --- !u!60 &1879250970
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -2320,7 +2294,7 @@ Transform:
   m_GameObject: {fileID: 2082625436}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.014, y: 0.02, z: 1}
-  m_LocalScale: {x: 43.66425, y: 38.70372, z: 1}
+  m_LocalScale: {x: 45, y: 45, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 17

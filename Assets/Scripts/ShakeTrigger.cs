@@ -1,8 +1,9 @@
-﻿//////////////////////////////
-///Name: Ryan Scheppler
-///Date: 10/23/2020
-///Desc: Add to objects that need to trigger the camera shake with unity events
-//////////////////////////////////
+﻿///////////////
+///name: Thomas Allen
+///Date: 11/12/2020
+///desc: Triggers the shakign effect on the camera
+///Credit: Shell by Ryan Scheppler, with modifications
+//////////////
 
 
 using System.Collections;

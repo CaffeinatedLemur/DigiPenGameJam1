@@ -1,7 +1,7 @@
 ﻿/***************
 * by: Ryan Shepppler
-* Writen out by: Turin Thompson
-* Date: 10/21/2020
+* Writen out by: Turin Thompson and Thomas Allen
+* Date: 11/12/2020
 * brief: DESTROYS game objects after 3 or more seconds
 * note: grabbed from TopDownGame, but might be adapted
 * ***********/
@@ -17,12 +17,14 @@ public class DestoryAtTime : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //start the countdown
         StartCoroutine(CountDownTimer());
     }
 
     //this is the timer of how long the object remains for
     IEnumerator CountDownTimer()
     {
+        //destroy object after given time is up
         yield return new WaitForSeconds(TimeOfExistance);
         Destroy(gameObject);
     }

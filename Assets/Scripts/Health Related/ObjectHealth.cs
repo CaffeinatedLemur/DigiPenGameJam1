@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class ObjectHealth : MonoBehaviour
 {
@@ -22,7 +23,7 @@ public class ObjectHealth : MonoBehaviour
 
     // Scripts
     PlayerHealthBar player;
-    BossHealthBar boss;
+    //BossHealthBar boss;
     SoundPlayonEvent sound;
 
     // Distinguishes health bars
@@ -49,10 +50,17 @@ public class ObjectHealth : MonoBehaviour
         player = play.GetComponent<PlayerHealthBar>();
         player.HealthChange(CurrentHealth, MaximumHealth);
 
+        //unused bit for boss
+        /*
+        Scene currentScene = SceneManager.GetActiveScene();
         // Gets script off of health bar object, and runs it once
-        GameObject enemy = GameObject.Find("Boss Health");
-        boss = enemy.GetComponent<BossHealthBar>();
-        boss.BarChange();
+        if (currentScene.buildIndex == 6)
+        {
+            GameObject enemy = GameObject.Find("Boss Health");
+            boss = enemy.GetComponent<BossHealthBar>();
+            boss.BarChange();
+        }
+        */
     }
 
     public void ChangeHealth(int change)
@@ -101,7 +109,9 @@ public class ObjectHealth : MonoBehaviour
         // Detects if current objects tag is player or boss, and changes bar accordingly
         if (thing.tag == "Player")
             player.HealthChange(CurrentHealth, MaximumHealth);
+        /*
         else if (thing.tag == "Boss")
             boss.BarChange();
+        */
     }
 }

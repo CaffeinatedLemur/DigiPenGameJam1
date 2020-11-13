@@ -1,7 +1,7 @@
 ﻿/////////////////////////////
 ///By: Frank Vanris
 ///Date: 11/4/2020
-///Description: This will be the enemy AI where if the enemy collides with a wall it changes direction.
+///Desc: This will be the enemy AI where if the enemy collides with a wall it changes direction.
 ////////////////////////////
 
 

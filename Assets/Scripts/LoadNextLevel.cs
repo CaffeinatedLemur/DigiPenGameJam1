@@ -1,8 +1,7 @@
 ﻿////////////////
 //Name: Thomas Allen
-//Script by: Ryan Scheppler
 //Date: 11/6/2020
-//Description: Loads next level in build order
+//Desc: Loads next level in build order.
 ////////////////
 
 using System.Collections;
@@ -17,7 +16,7 @@ public class LoadNextLevel : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scene = SceneManager.GetActiveScene();
+        scene = SceneManager.GetActiveScene(); //find the active scene
     }
 
     // Update is called once per frame
@@ -26,14 +25,14 @@ public class LoadNextLevel : MonoBehaviour
         
     }
 
+    //triggers on collition with an Trigger collider
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        print("Detects collisions");
-        int nextSceneIndex = scene.buildIndex;
-        nextSceneIndex = nextSceneIndex + 1;
-        if (collision.gameObject.CompareTag("Player"))
+        int nextSceneIndex = scene.buildIndex; //find the current scene's index
+        nextSceneIndex = nextSceneIndex + 1; //find the next scene's index
+        if (collision.gameObject.CompareTag("Player")) //make sure it is the player before loading
         {
-            SceneManager.LoadScene(nextSceneIndex);
+            SceneManager.LoadScene(nextSceneIndex); //loads the next level
         }
     }
 }

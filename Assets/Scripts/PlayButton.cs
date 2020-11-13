@@ -1,6 +1,5 @@
 ﻿////////////////
 //Name: Thomas Allen
-//Script by: Ryan Scheppler
 //Date: 11/6/2020
 //Description: Loads next level in when button is pressed
 ////////////////
@@ -26,6 +25,6 @@ public class PlayButton : MonoBehaviour
     }
     public void LoadLevel()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(1); //load the first level
     }
 }

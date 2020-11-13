@@ -16,7 +16,7 @@ public class CameraShake : MonoBehaviour
     [Tooltip("Adjust this to change how fast the duration depletes (higher number faster depletion)")]
     public static float DampingSpeed = 1.0f;
 
-    public static void TriggerShake(float duration, float magnitude)
+    public static void TriggerShake(float duration, float magnitude) //trigger the camera shake on the camera 
     {
         if (ShakeDuration <= 0)
         {
@@ -27,6 +27,7 @@ public class CameraShake : MonoBehaviour
             ShakeMagnitude = magnitude;
         }
 
+       
         if (duration > ShakeDuration)
         {
             ShakeDuration = duration;
