@@ -262,7 +262,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &260217546
 PrefabInstance:
@@ -446,6 +446,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ObjectsToSpawn: []
+  timer: 0
+  cooldown: 0
 --- !u!114 &928404750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,7 +573,7 @@ Transform:
   m_LocalScale: {x: 100, y: -0.10473895, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963786670 stripped
 MonoBehaviour:
@@ -844,6 +846,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   ObjectsToSpawn: []
+  timer: 0
+  cooldown: 0
 --- !u!114 &1594223645 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4375703705135612582, guid: fc9886027b2fb534590ad06b82b196e2,
@@ -1020,7 +1024,7 @@ PrefabInstance:
     - target: {fileID: 4361986799637246817, guid: 5703dc0484529ea47863b5b1b6a8d4da,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4361986799637246817, guid: 5703dc0484529ea47863b5b1b6a8d4da,
         type: 3}
@@ -1144,7 +1148,7 @@ PrefabInstance:
     - target: {fileID: 4375703706229135460, guid: fc9886027b2fb534590ad06b82b196e2,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4375703706229135460, guid: fc9886027b2fb534590ad06b82b196e2,
         type: 3}
