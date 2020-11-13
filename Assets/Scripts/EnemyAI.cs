@@ -3,7 +3,7 @@
 ///Comments added by thomas allen. Slight risk of them being inaccurate.
 ///Date: 11/4/2020
 ///Desc: This will be the enemy AI where if the enemy collides with a wall it changes direction.
-///Credit: 
+///Credit: I believe that this was partially from a tutorial. Frank has not told me what it was to give credit.
 ////////////////////////////
 
 
