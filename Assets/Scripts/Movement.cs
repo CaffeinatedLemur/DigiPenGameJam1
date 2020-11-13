@@ -40,7 +40,9 @@ public class Movement : MonoBehaviour
 		GameObject soundSource = GameObject.Find("Sound Source");
 		// Uses script from sound source object and sets it for use
 		sound = soundSource.GetComponent<SoundPlayonEvent>();
-		
+
+		isDead = gameObject.GetComponent<Respawn>(); //get the respawn script
+
 	}
 
 
@@ -121,6 +123,7 @@ public class Movement : MonoBehaviour
 
 	public Vector2 noYSpeed; // remove Y speed of player
 
+	Respawn isDead; // Respawn sccript
 
 	public GameObject DashParticles; //particles for the dash
 
@@ -137,23 +140,14 @@ public class Movement : MonoBehaviour
 				dash(currentX, CurrentY); //dash
 			timer = 0; //reset timer (unused in current iteration)
 		}
-		/*
-		if (isDashing)
-        {
-			myRb.drag = timer * 100;
-        }
-		if (timer >= duration)
-        {
-			myRb.drag = 1;
-        }
-		*/
+
 	}
 
 	//method that makes player dash
 	public void dash(float x, float y)
 	{
 		//make sure the player can dash
-		if (!hasDashed && ! canJump)
+		if (!hasDashed && ! canJump && !isDead.dead)
 		{
 			//Update teh vector2
 			noYSpeed.y = 0; 
