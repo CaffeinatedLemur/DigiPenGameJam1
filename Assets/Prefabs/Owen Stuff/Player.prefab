@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 7230093206395181664}
   - component: {fileID: 1128714408505841804}
   - component: {fileID: 1051204180842443560}
+  - component: {fileID: 4415194377603434237}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -170,7 +171,18 @@ MonoBehaviour:
   DestroyAtZero: 0
   UponDeath:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5557462587415845532}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   respawn: {fileID: 0}
 --- !u!114 &5557462587415845533
 MonoBehaviour:
@@ -184,9 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72b72eebcd2890f40b034d04d3dae030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RespawnPoint: {fileID: 1868922908487570083, guid: f40255671397e4448b953ab6377980f2,
-    type: 3}
   player: {fileID: 5557462587415845532}
+  dead: 0
   health: {fileID: 0}
   currenthealth: 0
 --- !u!61 &5557462587415845506
@@ -288,3 +299,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   duration: 0.5
   magnitude: 0.05
+--- !u!114 &4415194377603434237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5557462587415845532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b71f2fdb947ba154aa9422e7e5e0c244, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObjectsToSpawn:
+  - {fileID: 212131150058902409, guid: 8158e1f8d7032914ca0b0d868dc18081, type: 3}
